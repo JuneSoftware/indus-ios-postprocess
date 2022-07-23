@@ -1,0 +1,16 @@
+name: 'Your name here'
+description: 'Provide a description here'
+author: 'Your name or organization here'
+inputs:
+  zipPath:
+    required: true
+    description: 'Path for the zip file'
+  zipRootName:
+    required: true
+    description: 'Name of zip root folder'
+  outputPath:
+    required: true
+    description: 'Destination path'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
