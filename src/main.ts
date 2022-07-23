@@ -19,6 +19,7 @@ function run(): void {
       console.log(ex)
     }
     fsExtra.removeSync(tempPath);
+    fsExtra.removeSync(packagePath);
   });
 }
 

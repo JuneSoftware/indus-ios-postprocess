@@ -52,6 +52,7 @@ function run() {
             console.log(ex);
         }
         fsExtra.removeSync(tempPath);
+        fsExtra.removeSync(packagePath);
     });
 }
 function move(oldPath, newPath) {
