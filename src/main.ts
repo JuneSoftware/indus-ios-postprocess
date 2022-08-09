@@ -13,6 +13,8 @@ function run(): void {
   const tempPathResult = path.join(tempPath, rootFolderName);
 
   let changelog = core.getInput('changelog');
+  let filePath = path.join(outputPath, 'Changelog.txt');
+  let content = Buffer.from(changelog);
 
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
     try {
@@ -23,7 +25,7 @@ function run(): void {
     }
     fsExtra.removeSync(tempPath);
     fsExtra.removeSync(packagePath);
-    fs.writeFileSync(path.join(outputPath, 'Changelog.txt'), changelog, { encoding: 'utf8' });
+    fs.writeFileSync(filePath, content);
   });
 }
 
