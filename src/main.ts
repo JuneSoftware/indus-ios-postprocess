@@ -24,7 +24,7 @@ function run(): void {
     }
     fsExtra.removeSync(tempPath);
     fsExtra.removeSync(packagePath);
-    fs.writeFileSync(path.join(outputPath, 'Changelog.txt'), changelog);
+    fs.writeFileSync(path.join(outputPath, 'Changelog.txt'), changelog, { encoding: 'utf8' });
   });
 }
 
