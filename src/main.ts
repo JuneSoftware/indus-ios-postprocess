@@ -8,8 +8,11 @@ function run(): void {
   const packagePath = core.getInput('zipPath');
   const rootFolderName = core.getInput('zipRootName');
   const outputPath = core.getInput('outputPath');
+  const changelog = core.getInput('changelog');
   const tempPath = 'tempPath';
   const tempPathResult = path.join(tempPath, rootFolderName);
+
+  fs.writeFileSync('Changelog.txt', changelog)
 
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
     try {

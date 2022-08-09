@@ -11,6 +11,9 @@ inputs:
   outputPath:
     required: true
     description: 'Destination path'
+  changelog:
+    required: true
+    description: 'Changelog for the build'
 runs:
   using: 'node16'
   main: 'dist/index.js'

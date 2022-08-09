@@ -12,6 +12,7 @@ jobs:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
+          changelog: 'Whats New: Added Changelog'
       - run: |
           cd XCodeProject
           ls
