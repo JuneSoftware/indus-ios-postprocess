@@ -38,7 +38,6 @@ const unzip = __importStar(__nccwpck_require__(1639));
 const fs = __importStar(__nccwpck_require__(7147));
 const fsExtra = __importStar(__nccwpck_require__(5630));
 const path_1 = __importDefault(__nccwpck_require__(1017));
-const os_1 = __nccwpck_require__(2037);
 function run() {
     const packagePath = core.getInput('zipPath');
     const rootFolderName = core.getInput('zipRootName');
@@ -46,7 +45,6 @@ function run() {
     const tempPath = 'tempPath';
     const tempPathResult = path_1.default.join(tempPath, rootFolderName);
     let changelog = core.getInput('changelog');
-    changelog.replace('\n', `${os_1.EOL}`);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
         try {
             move(tempPathResult, outputPath);
