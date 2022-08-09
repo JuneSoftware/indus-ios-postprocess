@@ -3,7 +3,6 @@ import * as unzip from 'unzipper';
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
 import path from 'path';
-import { EOL } from 'os';
 
 function run(): void {
   const packagePath = core.getInput('zipPath');
