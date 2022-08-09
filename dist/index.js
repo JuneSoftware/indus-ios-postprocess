@@ -57,6 +57,7 @@ function run() {
         fsExtra.removeSync(tempPath);
         fsExtra.removeSync(packagePath);
         fs.writeFileSync(filePath, content);
+        console.log(content);
     });
 }
 function move(oldPath, newPath) {

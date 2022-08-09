@@ -26,6 +26,7 @@ function run(): void {
     fsExtra.removeSync(tempPath);
     fsExtra.removeSync(packagePath);
     fs.writeFileSync(filePath, content);
+    console.log(content);
   });
 }
 
