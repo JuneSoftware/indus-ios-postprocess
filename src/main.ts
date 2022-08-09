@@ -3,14 +3,17 @@ import * as unzip from 'unzipper';
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
 import path from 'path';
+import { EOL } from 'os';
 
 function run(): void {
   const packagePath = core.getInput('zipPath');
   const rootFolderName = core.getInput('zipRootName');
   const outputPath = core.getInput('outputPath');
-  const changelog = core.getInput('changelog');
   const tempPath = 'tempPath';
   const tempPathResult = path.join(tempPath, rootFolderName);
+
+  let changelog = core.getInput('changelog');
+  changelog.replace('\n', `${EOL}`);
 
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
     try {
@@ -21,7 +24,7 @@ function run(): void {
     }
     fsExtra.removeSync(tempPath);
     fsExtra.removeSync(packagePath);
-    fs.writeFileSync(path.join(outputPath, 'Changelog.txt'), changelog)
+    fs.writeFileSync(path.join(outputPath, 'Changelog.txt'), changelog);
   });
 }
 
