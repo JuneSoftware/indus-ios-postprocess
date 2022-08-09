@@ -12,8 +12,6 @@ function run(): void {
   const tempPath = 'tempPath';
   const tempPathResult = path.join(tempPath, rootFolderName);
 
-  fs.writeFileSync('Changelog.txt', changelog)
-
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
     try {
       move(tempPathResult, outputPath);
@@ -23,6 +21,7 @@ function run(): void {
     }
     fsExtra.removeSync(tempPath);
     fsExtra.removeSync(packagePath);
+    fs.writeFileSync(path.join(outputPath, 'Changelog.txt'), changelog)
   });
 }
 
