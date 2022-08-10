@@ -46,7 +46,7 @@ function run() {
     const tempPathResult = path_1.default.join(tempPath, rootFolderName);
     let changelog = core.getInput('changelog');
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
-    let content = Buffer.from(changelog);
+    console.log(changelog);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
         try {
             move(tempPathResult, outputPath);
@@ -56,8 +56,7 @@ function run() {
         }
         fsExtra.removeSync(tempPath);
         fsExtra.removeSync(packagePath);
-        fs.writeFileSync(filePath, content);
-        console.log(content);
+        fs.writeFileSync(filePath, changelog);
     });
 }
 function move(oldPath, newPath) {

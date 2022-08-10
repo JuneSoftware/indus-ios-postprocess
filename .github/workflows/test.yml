@@ -12,7 +12,7 @@ jobs:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
-          changelog: 'Whats New: Added Changelog'
+          changelog: "*What's New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n"
       - run: |
           cd XCodeProject
           ls
