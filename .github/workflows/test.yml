@@ -11,16 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: create string
-        run: |
-          echo "RESULTS=${{ github.event.inputs.changelogs }}" >> $GITHUB_ENV
-        id: string_mod
       - uses: ./
         with:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
-          changelog: "${{ env.RESULTS }}"
+          changelog: '${{ github.event.inputs.changelogs }}'
       - run: |
           cd XCodeProject
           ls

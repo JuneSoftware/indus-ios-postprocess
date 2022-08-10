@@ -18,9 +18,9 @@ function run(): void {
   let charArray = changelog.split('');
   for(let char of charArray)
   {
-    console.log(`${char}}`);
+    console.log(`${char}`);
   }
-  console.log(`${changelog} ${changelog.includes('\n')}`);
+  console.log(`${changelog} ${changelog.includes('\\n')} ${changelog.includes('\r\n')}`);
 
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
     try {
