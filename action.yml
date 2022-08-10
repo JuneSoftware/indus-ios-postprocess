@@ -14,9 +14,6 @@ inputs:
   changelog:
     required: true
     description: 'Changelog for the build'
-  changelogs:
-    required: true
-    description: 'Logs'
 runs:
   using: 'node16'
   main: 'dist/index.js'
