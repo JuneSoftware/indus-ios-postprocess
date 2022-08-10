@@ -47,8 +47,9 @@ function run() {
     const tempPathResult = path_1.default.join(tempPath, rootFolderName);
     let changelog = core.getInput('changelog');
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
-    console.log(`${changelog} ${changelog.includes('\\n')} ${changelog.includes('\r\n')}`);
-    console.log(`${changelog.replace(/\\n/g, `${os_1.EOL}`)}`);
+    //Replace new line characters
+    changelog = changelog.replace(/\\n/g, `${os_1.EOL}`);
+    console.log(changelog);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
         try {
             move(tempPathResult, outputPath);
