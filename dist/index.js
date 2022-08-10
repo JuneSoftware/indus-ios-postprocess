@@ -38,6 +38,7 @@ const unzip = __importStar(__nccwpck_require__(1639));
 const fs = __importStar(__nccwpck_require__(7147));
 const fsExtra = __importStar(__nccwpck_require__(5630));
 const path_1 = __importDefault(__nccwpck_require__(1017));
+const os_1 = __nccwpck_require__(2037);
 function run() {
     const packagePath = core.getInput('zipPath');
     const rootFolderName = core.getInput('zipRootName');
@@ -47,7 +48,7 @@ function run() {
     let changelog = core.getInput('changelog');
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
     console.log(`${changelog} ${changelog.includes('\\n')} ${changelog.includes('\r\n')}`);
-    console.log(`${changelog.replace(/\\n/g, '|')}`);
+    console.log(`${changelog.replace(/\\n/g, `${os_1.EOL}`)}`);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
         try {
             move(tempPathResult, outputPath);
