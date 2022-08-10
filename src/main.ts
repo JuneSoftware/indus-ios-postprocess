@@ -15,7 +15,7 @@ function run(): void {
   let changelog = core.getInput('changelog');
   let filePath = path.join(outputPath, 'Changelog.txt');
   let newlineRegex = new RegExp('\\n', 'g');
-  changelog = changelog.replace(newlineRegex, `${EOL}`);
+  changelog = changelog.replace(newlineRegex, `|`);
   console.log(changelog);
 
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
