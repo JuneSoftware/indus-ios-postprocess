@@ -13,19 +13,14 @@ jobs:
       - uses: actions/checkout@v3
       - name: create string
         run: |
-          MY_STRING="${{ github.event.inputs.changelogs }}"
-          MY_STRING="${MY_STRING//'%'/'%25'}"
-          MY_STRING="${MY_STRING//$'\n'/'%0A'}"
-          MY_STRING="${MY_STRING//$'\r'/'%0D'}"
-          echo $MY_STRING
-          echo "::set-output name=content::$MY_STRING"
+          echo "RESULTS=${{ github.event.inputs.changelogs }}" >> $GITHUB_ENV
         id: string_mod
       - uses: ./
         with:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
-          changelog: "${{ steps.string_mod.outputs.content }}"
+          changelog: "${{ env.RESULTS }}"
       - run: |
           cd XCodeProject
           ls
