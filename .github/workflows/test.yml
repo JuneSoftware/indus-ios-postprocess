@@ -1,7 +1,7 @@
 name: 'build-test'
 on: # rebuild any PRs and main branch changes
   workflow_dispatch:
-    Inputs:
+    inputs:
       changelogs:
         required: true
         default: '*Whats New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n'
