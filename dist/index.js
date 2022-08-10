@@ -47,7 +47,7 @@ function run() {
     let changelog = core.getInput('changelog');
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
     console.log(`${changelog} ${changelog.includes('\\n')} ${changelog.includes('\r\n')}`);
-    console.log(`${changelog.replace('\\n', '|')}`);
+    console.log(`${changelog.replace(/\\n/g, '|')}`);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
         try {
             move(tempPathResult, outputPath);
