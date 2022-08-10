@@ -38,6 +38,7 @@ const unzip = __importStar(__nccwpck_require__(1639));
 const fs = __importStar(__nccwpck_require__(7147));
 const fsExtra = __importStar(__nccwpck_require__(5630));
 const path_1 = __importDefault(__nccwpck_require__(1017));
+const os_1 = __nccwpck_require__(2037);
 function run() {
     const packagePath = core.getInput('zipPath');
     const rootFolderName = core.getInput('zipRootName');
@@ -45,6 +46,9 @@ function run() {
     const tempPath = 'tempPath';
     const tempPathResult = path_1.default.join(tempPath, rootFolderName);
     let changelog = core.getInput('changelog');
+    changelog = '*Whats New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n';
+    let newlineRegex = new RegExp('\\n', 'g');
+    changelog = changelog.replace(newlineRegex, `${os_1.EOL}`);
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
     console.log(changelog);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {

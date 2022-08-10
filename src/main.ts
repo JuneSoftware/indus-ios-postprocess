@@ -3,6 +3,7 @@ import * as unzip from 'unzipper';
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
 import path from 'path';
+import { EOL } from 'os';
 
 function run(): void {
   const packagePath = core.getInput('zipPath');
@@ -12,6 +13,9 @@ function run(): void {
   const tempPathResult = path.join(tempPath, rootFolderName);
 
   let changelog = core.getInput('changelog');
+  changelog = '*Whats New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n';
+  let newlineRegex = new RegExp('\\n', 'g');
+  changelog = changelog.replace(newlineRegex, `${EOL}`);
   let filePath = path.join(outputPath, 'Changelog.txt');
   console.log(changelog);
 
