@@ -46,7 +46,7 @@ function run() {
     const tempPathResult = path_1.default.join(tempPath, rootFolderName);
     let changelog = core.getInput('changelog');
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
-    let newlineRegex = new RegExp('\\n', 'g');
+    let newlineRegex = new RegExp('\n', 'g');
     changelog = changelog.replace(newlineRegex, `|`);
     console.log(changelog);
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
