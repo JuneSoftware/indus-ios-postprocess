@@ -13,10 +13,9 @@ function run(): void {
   const tempPathResult = path.join(tempPath, rootFolderName);
 
   let changelog = core.getInput('changelog');
-  changelog = '*Whats New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n';
+  let filePath = path.join(outputPath, 'Changelog.txt');
   let newlineRegex = new RegExp('\\n', 'g');
   changelog = changelog.replace(newlineRegex, `${EOL}`);
-  let filePath = path.join(outputPath, 'Changelog.txt');
   console.log(changelog);
 
   fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
