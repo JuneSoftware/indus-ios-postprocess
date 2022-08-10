@@ -25,7 +25,7 @@ jobs:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
-          changelog: "${{ steps.my_string.outputs.content }}"
+          changelog: "${{ steps.string_mod.outputs.content }}"
       - run: |
           cd XCodeProject
           ls
