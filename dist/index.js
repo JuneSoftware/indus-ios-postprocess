@@ -48,8 +48,11 @@ function run() {
     let changelog = core.getInput('changelog');
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
     let newlineRegex = new RegExp(`${os_1.EOL}`, 'g');
-    changelog = changelog.replace(newlineRegex, `|`);
-    console.log(changelog);
+    let regMatch = newlineRegex.exec(changelog);
+    if (regMatch) {
+        changelog = changelog.replace(regMatch[0], `|`);
+        console.log(`${changelog} : ${regMatch[0]}`);
+    }
     fs.createReadStream(packagePath).pipe(unzip.Extract({ path: tempPath })).on('close', function () {
         try {
             move(tempPathResult, outputPath);
