@@ -11,12 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: create string
+        run: |
+          MY_STRING=$(${{ github.event.inputs.changelogs }})
+          MY_STRING="${MY_STRING//'%'/'%25'}"
+          MY_STRING="${MY_STRING//$'\n'/'%0A'}"
+          MY_STRING="${MY_STRING//$'\r'/'%0D'}"
+          echo "::set-output name=content::$MY_STRING"
+        id: string_mod
       - uses: ./
         with:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
-          changelog: "${{ github.event.inputs.changelogs }}"
+          changelog: "${{ steps.my_string.outputs.content }}"
       - run: |
           cd XCodeProject
           ls
