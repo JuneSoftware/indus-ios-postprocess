@@ -4,7 +4,7 @@ on: # rebuild any PRs and main branch changes
     Inputs:
       changelogs:
         required: true
-        default: "*What's New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n"
+        default: '*Whats New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n'
 
 jobs:
   test: # make sure the action works on a clean machine without building
