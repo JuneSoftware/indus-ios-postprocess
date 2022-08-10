@@ -2,7 +2,7 @@ name: 'build-test'
 on: # rebuild any PRs and main branch changes
   workflow_dispatch:
     Inputs:
-      changelog:
+      changelogs:
         required: true
         default: "*What's New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n"
 
@@ -16,7 +16,7 @@ jobs:
           zipPath: 'Builds/BuildPackage.zip'
           zipRootName: 'BuildPackage'
           outputPath: 'XCodeProject'
-          changelog: "${{ github.event.inputs.changelog }}"
+          changelog: "${{ github.event.inputs.changelogs }}"
       - run: |
           cd XCodeProject
           ls
