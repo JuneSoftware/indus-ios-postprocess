@@ -45,7 +45,6 @@ function run() {
     const tempPath = 'tempPath';
     const tempPathResult = path_1.default.join(tempPath, rootFolderName);
     let changelog = core.getInput('changelog');
-    changelog = '*Whats New:*\n• Added Changelogs to Testflight\n\n*Changes:*\n• Now builds can be made without any changelogs\n\n';
     let filePath = path_1.default.join(outputPath, 'Changelog.txt');
     let newlineRegex = new RegExp('\n', 'g');
     changelog = changelog.replace(newlineRegex, `|`);
